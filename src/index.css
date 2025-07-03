@@ -8,6 +8,7 @@
   box-sizing: border-box;
 }
 
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -21,11 +22,11 @@ ul{
 
 }
 @font-face {
-  font-family:oswald ;
-  src: url('./Fonts/Oswald-Medium.ttf');
+  font-family:playfair ;
+  src: url('./Fonts/PlayfairDisplay-Medium.ttf');
 }
-.oswald{
-  font-family:oswald;
+.playfair{
+  font-family:playfair;
 }
 img{
   max-width: 100%;

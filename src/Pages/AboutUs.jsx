@@ -1,11 +1,17 @@
 import img from "../assets/ContainerHome4/iconImg.png";
 import img2 from "../assets/ContainerAbout/icon1.png";
 import img3 from "../assets/ContainerAbout/icon2.png";
+import { useNavigate } from "react-router-dom";
 const AboutUs = () => {
+  const navigate = useNavigate()
+  function handleClick() {
+    navigate('/market')
+    
+  }
   return (
     <div className=" p-10 bg-gray-200">
       <div className=" flex container flex-col gap-8 w-full justify-center items-center ">
-        <h1 className="text-[50px] max-md:text-[30px] text-center text-black w-[100%]">
+        <h1 className="text-[50px]  max-md:text-[30px] text-center text-black w-[100%]">
           КТО МЫ ТАКИЕ
         </h1>
         <div className="flex justify-center flex-col after:block w-[150px] left-[-5%] bottom-[-1px] h-[5px] bg-black "></div>
@@ -63,7 +69,7 @@ const AboutUs = () => {
           </div>
         </div>
       <div className='w-full flex justify-center '>
-        <button  className=' text-white bg-black w-[200px] h-[40px] hover:bg-gray-400 duration-300' >{'В Магазин >'}</button>
+        <button onClick={() => handleClick()}  className=' text-white bg-black w-[200px] h-[40px] hover:bg-gray-400 duration-300' >{'В Магазин >'}</button>
       </div>
       </div>
     </div>

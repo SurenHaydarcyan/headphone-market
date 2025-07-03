@@ -1,11 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectIsOpenMenu } from "../../store/slices/burgerMenuSlice/burgerMenuSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { closeMenu, selectIsOpenMenu } from "../../store/slices/burgerMenuSlice/burgerMenuSlice";
 import { NavLink } from "react-router-dom";
 import BurgerMenuIcon from "./BurgerMenuIcon";
 
 const BurgerMenu = () => {
   const isOpenBurgerMenu = useSelector(selectIsOpenMenu);
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -29,6 +30,7 @@ const BurgerMenu = () => {
         <ul className="flex flex-col gap-4 px-6 text-[18px] font-medium">
           <li>
             <NavLink
+              onClick={() => dispatch(closeMenu())}
               to="/"
               className="block w-full py-2 text-black hover:text-white hover:bg-black rounded transition-colors"
             >
@@ -37,6 +39,7 @@ const BurgerMenu = () => {
           </li>
           <li>
             <NavLink
+               onClick={() => dispatch(closeMenu())}
               to="/aboutUs"
               className="block w-full py-2 text-black hover:text-white hover:bg-black rounded transition-colors"
             >
@@ -45,6 +48,7 @@ const BurgerMenu = () => {
           </li>
           <li>
             <NavLink
+               onClick={() => dispatch(closeMenu())}
               to="/market"
               className="block w-full py-2 text-black hover:text-white hover:bg-black rounded transition-colors"
             >

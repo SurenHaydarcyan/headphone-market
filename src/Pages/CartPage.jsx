@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,14 +11,15 @@ import {
 import { deleteCartThunks } from "@/store/slices/cartSlice/getCartThunk";
 import { useNavigate } from "react-router-dom";
 
+import Modal from "@/components/Modal";
+
 const CartPage = () => {
   const cartProduct = useSelector(selectCart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { loading, error, cart } = cartProduct;
 
-  // Հաշվում ենք ընդհանուր գինը
   const totalPrice = cart.reduce((acc, item) => {
     const price = Number(item.basePrice || item.price || 0);
     const count = Number(item.count || 0);
@@ -37,12 +38,10 @@ const CartPage = () => {
     }
   }, [cart.length, navigate]);
 
-  // --- Response States ---
-
   if (loading === "pending") {
     return (
       <div className="bg-gray-200 min-h-screen flex items-center justify-center p-6">
-        <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 text-center max-w-xs">
+        <p className="text-lg font-semibold text-gray-700 text-center max-w-xs">
           Загрузка корзины...
         </p>
       </div>
@@ -52,7 +51,7 @@ const CartPage = () => {
   if (loading === "rejected") {
     return (
       <div className="bg-gray-200 min-h-screen flex items-center justify-center p-6">
-        <p className="text-base sm:text-lg md:text-xl font-semibold text-red-600 text-center max-w-xs">
+        <p className="text-lg font-semibold text-red-600 text-center max-w-xs">
           Ошибка загрузки корзины: {error}
         </p>
       </div>
@@ -62,19 +61,16 @@ const CartPage = () => {
   if (cart.length === 0) {
     return (
       <div className="bg-gray-200 min-h-screen flex items-center justify-center p-6">
-        <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 text-center max-w-xs">
+        <p className="text-lg font-semibold text-gray-700 text-center max-w-xs">
           Ваша корзина пуста. Переадресация в магазин...
         </p>
       </div>
     );
   }
 
-  // --- Main UI ---
-
   return (
     <div className="bg-gray-200 min-h-screen p-4 md:p-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
-        {/* Left side: Cart items */}
         <div className="md:w-3/5 flex flex-col gap-6">
           <h1 className="text-2xl font-bold">Моя корзина</h1>
           <div className="flex flex-col gap-6">
@@ -90,11 +86,14 @@ const CartPage = () => {
                 />
                 <div className="flex flex-col justify-between flex-grow w-full">
                   <div>
-                    <p className="uppercase font-bold text-base">{el.productName}</p>
-                    <p className="text-sm text-gray-600 mt-1">{el.basePrice} $</p>
+                    <p className="uppercase font-bold text-base">
+                      {el.productName}
+                    </p>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {el.basePrice} $
+                    </p>
                   </div>
-
-                  <div className="flex items-center justify-between mt-4 sm:mt-auto w-full max-md:justify-batween ">
+                  <div className="flex items-center justify-between mt-4 sm:mt-auto w-full max-md:justify-between ">
                     <div className="flex items-center border border-gray-300 rounded h-10">
                       <CiCircleMinus
                         onClick={() => dispatch(decrementCount(el.id))}
@@ -119,7 +118,6 @@ const CartPage = () => {
           </div>
         </div>
 
-        {/* Right side: Order summary */}
         <div className="md:w-2/5 bg-white rounded p-6 flex flex-col gap-6 shadow-md">
           <h2 className="text-2xl font-bold">Детали заказа</h2>
           <div className="border-t border-gray-300" />
@@ -135,7 +133,10 @@ const CartPage = () => {
             <span>Итого</span>
             <span>{totalPrice.toFixed(2)} $</span>
           </div>
-          <button className="bg-black text-white py-3 rounded hover:bg-gray-700 transition">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-black text-white py-3 rounded hover:bg-gray-700 transition"
+          >
             Оформить заказ
           </button>
           <div className="flex items-center justify-center gap-2 text-gray-600 text-sm mt-4">
@@ -144,6 +145,7 @@ const CartPage = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <Modal open={isModalOpen} setOpen={setIsModalOpen} />}
     </div>
   );
 };

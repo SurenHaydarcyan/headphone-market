@@ -7,8 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ProductPage from "./Pages/ProductPage";
 import CartPage from "./Pages/CartPage";
 import NotFoundPage from "./components/NotFoundPage";
-import LoginPage from "./Pages/AdminPage/LoginPage";
-import AdminDashboardPage from "./Pages/AdminPage/AdminDashboardPage";
+
 
 
 
@@ -26,8 +25,7 @@ const App = () => {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
         </Route>
-        <Route path="/admin/login" element={<LoginPage/>}/>
-        <Route path="/admin/dashboard" element={<AdminDashboardPage/>}/>
+
 
         <Route path="*" element={<NotFoundPage />} /> 
       </Routes>

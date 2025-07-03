@@ -23,6 +23,7 @@ import {
   deleteCartThunks,
   getCartThunk,
 } from "@/store/slices/cartSlice/getCartThunk";
+import Modal from "../Modal";
 
 const CartSlide = () => {
   const carts = useSelector(selectCart);
@@ -30,6 +31,7 @@ const CartSlide = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const prevCartLength = useRef(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
 
@@ -66,7 +68,7 @@ const CartSlide = () => {
     </button>
   </SheetTrigger>
 
-<SheetContent className="w-full z-[999] max-w-full sm:w-[500px] md:w-[700px] lg:w-[900px] overflow-y-auto">
+<SheetContent className="w-full  z-[999] max-w-full sm:w-[500px] md:w-[700px] lg:w-[900px] overflow-y-auto">
     <SheetHeader>
       <SheetTitle className="text-center text-black font-bold italic underline text-2xl">
         PRODUCTS
@@ -74,7 +76,7 @@ const CartSlide = () => {
       <SheetClose className="text-black bg-black"/>
     </SheetHeader>
 
-    <div className="flex  flex-col justify-between p-3 h-[85vh] mt-4">
+    <div className="flex  flex-col justify-between py-5 h-[85vh]  mt-4">
       <div className="flex flex-col gap-4 overflow-y-auto max-h-[55vh] pr-2">
         {Array.isArray(carts.cart) && carts.cart.length > 0 ? (
           carts.cart.map((el, i) => (
@@ -125,7 +127,7 @@ const CartSlide = () => {
         </div>
 
         <div className="flex flex-col gap-3 items-center">
-          <button className="w-full max-w-[300px] bg-black  text-white py-2 rounded hover:bg-gray-400 transition">
+          <button onClick={() => setIsModalOpen(true)} className="w-full max-w-[300px] bg-black  text-white py-2 rounded hover:bg-gray-400 transition">
             Оформление заказа
           </button>
           <button
@@ -137,6 +139,7 @@ const CartSlide = () => {
         </div>
       </div>
     </div>
+     {isModalOpen && <Modal open={isModalOpen} setOpen={setIsModalOpen} />}
   </SheetContent>
 </Sheet>
 

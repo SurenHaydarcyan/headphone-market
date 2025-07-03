@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import BurgerMenuIcon from "../BurgerMenu/BurgerMenuIcon";
-
 import NavMenu from "./NavMenu";
 import CartSlide from "../BurgerMenu/CartSlide";
-
 
 const Navbar = () => {
   const [isFixed, setIsFixed] = useState(false);
@@ -36,18 +34,23 @@ const Navbar = () => {
           isFixed ? "fixed top-0 left-0 shadow-lg z-[100]" : "relative z-[100]"
         }`}
       >
-        <div className="container px-4 py-3 flex flex-wrap items-center justify-between">
-          
-          
-          <div className="text-black font-bold text-[30px] tracking-[4px]">
+        <div className="container px-4 sm:px-6 lg:px-10 py-4 flex flex-wrap items-center justify-between">
+          <div className="text-black playfair font-bold text-[30px] tracking-[7px]">
             МЕГАБИТ
           </div>
 
           <div className="flex items-center gap-5 z-[100]">
+          
             <CartSlide />
-            <NavMenu />
-            <BurgerMenuIcon />
-        
+
+            <div className="hidden md:block">
+              <NavMenu />
+            </div>
+
+      
+            <div className="block md:hidden">
+              <BurgerMenuIcon />
+            </div>
           </div>
         </div>
       </div>
