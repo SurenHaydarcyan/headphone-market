@@ -35,22 +35,13 @@
   ],
   "cart": [
     {
-      "id": "914f",
-      "productId": "2",
-      "productName": "black headphone",
-      "img": "https://static.wixstatic.com/media/9c608a_a220b0ace7c14f89b580dceded35f7b6.jpg",
+      "id": "3b5d",
+      "productId": "1",
+      "productName": "green headphone",
+      "img": "https://static.wixstatic.com/media/9c608a_8ac1adb0a50749a5aa72cd0181945cd0.jpg",
       "count": 1,
-      "basePrice": 1999,
-      "price": 1999
-    },
-    {
-      "id": "4577",
-      "productId": "3",
-      "productName": "gray headphone",
-      "img": "https://static.wixstatic.com/media/9c608a_8db6307d7c7b4b70b675a59fd036787e.jpg",
-      "count": 1,
-      "basePrice": 809,
-      "price": 809
+      "basePrice": 999,
+      "price": 999
     }
   ]
 }

@@ -10,13 +10,21 @@ const Market = () => {
   const { data, error, loading } = useSelector(selectProducts);
 
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(10);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     dispatch(getProductThunk());
-    const timer = setTimeout(() => setProgress(100), 4000);
 
-    return () => clearTimeout(timer);
+    let progressValue = 0;
+    const interval = setInterval(() => {
+      progressValue += 1;
+      setProgress(progressValue);
+      if (progressValue >= 100) {
+        clearInterval(interval);
+      }
+    }, 25);
+
+    return () => clearInterval(interval);
   }, []);
 
   const goProductPage = (id) => {
@@ -31,6 +39,8 @@ const Market = () => {
     );
   }
 
+  const isReady = loading === "fulfilled" && progress === 100;
+
   return (
     <div className="flex bg-gray-200 w-full flex-col justify-center items-center min-h-screen">
       <div className="flex container flex-col items-center justify-center px-4 sm:px-0 mt-10">
@@ -41,7 +51,7 @@ const Market = () => {
       </div>
 
       <div className="w-full p-4 sm:p-10 flex flex-wrap justify-center gap-4 sm:gap-6">
-        {loading === "fulfilled" ? (
+        {isReady ? (
           data?.map((el) => (
             <div
               onClick={() => goProductPage(el.id)}
@@ -71,10 +81,10 @@ const Market = () => {
             </div>
           ))
         ) : (
-          <>
-            <h1>LOADING....</h1>
+          <div className="flex flex-col items-center w-full mt-20">
+            <h1 className="text-lg mb-4 text-gray-700">Загрузка товаров...</h1>
             <Progress value={progress} className="w-[60%]" />
-          </>
+          </div>
         )}
       </div>
     </div>

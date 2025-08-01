@@ -40,14 +40,11 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-5 z-[100]">
-          
             <CartSlide />
-
             <div className="hidden md:block">
               <NavMenu />
             </div>
 
-      
             <div className="block md:hidden">
               <BurgerMenuIcon />
             </div>
