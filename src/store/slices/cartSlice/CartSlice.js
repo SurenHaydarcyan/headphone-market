@@ -37,7 +37,7 @@ export const CartSlice = createSlice({
       .addCase(getCartThunk.rejected, (state) => {
         state.loading = "rejected";
       })
-      //========================================POST
+      //==================================================POST
       .addCase(postCartThunk.pending, (state) => {
         state.loading = "pending";
       })
