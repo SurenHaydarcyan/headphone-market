@@ -37,23 +37,18 @@ export const CartSlice = createSlice({
       .addCase(getCartThunk.rejected, (state) => {
         state.loading = "rejected";
       })
-      //==================================================POST
       .addCase(postCartThunk.pending, (state) => {
         state.loading = "pending";
       })
       .addCase(postCartThunk.fulfilled, (state, action) => {
-        console.log("payload", action.payload);
-
         state.cart.push(action.payload);
         state.loading = "fulfilled";
       })
       .addCase(postCartThunk.rejected, (state) => {
         state.loading = "rejected";
       })
-      //===================================================DELETE
       .addCase(deleteCartThunks.fulfilled, (state, action) => {
-        const deletedItemId = action.meta.arg;
-
+        const deletedItemId = action.payload; // նկատի ունեցիր, որ thunk-ը պետք է վերադարձնի id
         state.cart = state.cart.filter((item) => item.id !== deletedItemId);
         state.loading = "fulfilled";
       })
@@ -65,6 +60,7 @@ export const CartSlice = createSlice({
       });
   },
 });
+
 export const selectCart = (state) => state.cart;
 export const { incrementCount, decrementCount } = CartSlice.actions;
 export const CartReducer = CartSlice.reducer;

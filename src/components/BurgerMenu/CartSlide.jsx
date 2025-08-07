@@ -22,9 +22,8 @@ import {
   getCartThunk,
 } from "@/store/slices/cartSlice/getCartThunk";
 import Modal from "../Modal";
-import { memo } from "react";
 
-const CartSlide = memo(() => {
+const CartSlide = () => {
   const carts = useSelector(selectCart);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -160,6 +159,6 @@ const CartSlide = memo(() => {
       </SheetContent>
     </Sheet>
   );
-});
+};
 
 export default CartSlide;

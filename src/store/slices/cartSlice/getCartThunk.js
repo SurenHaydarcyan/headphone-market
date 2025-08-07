@@ -1,76 +1,67 @@
-import { instance } from "@/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { db } from "@/firebase"; // քո firebase.js ֆայլից
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 
 export const getCartThunk = createAsyncThunk(
   "cart/getCart",
-  async function (_, thunkAPI) {
+  async (_, thunkAPI) => {
     try {
-      const config = {
-        method: "GET",
-        url: "cart",
-      };
-      const response = await instance(config);
-
-      return response.data;
+      const querySnapshot = await getDocs(collection(db, "cart"));
+      const cartItems = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return cartItems;
     } catch (error) {
-      console.error(error);
-      thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 
 export const postCartThunk = createAsyncThunk(
   "cart/postCart",
-  async function (body, thunkAPI) {
+  async (body, thunkAPI) => {
     try {
-      const config = {
-        method: "POST",
-        url: "cart",
-        data: body,
-      };
-      const response = await instance(config);
-
-      return response.data;
+      const docRef = await addDoc(collection(db, "cart"), body);
+      return { id: docRef.id, ...body };
     } catch (error) {
-      console.error(error);
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 
 export const putCartThunk = createAsyncThunk(
   "cart/putCart",
-  async function (body, thunkAPI) {
+  async (body, thunkAPI) => {
     try {
-      const config = {
-        method: "PUT",
-        url: `cart/${body.id}`,
-        data: body,
-      };
-      const response = await instance(config);
-
-
-      return response.data;
+      const docRef = doc(db, "cart", body.id);
+      await updateDoc(docRef, body);
+      return body;
     } catch (error) {
-      console.error(error);
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 
 export const deleteCartThunks = createAsyncThunk(
   "cart/cartDelete",
   async (cartItemId, thunkAPI) => {
     try {
-      const config = {
-        method: "DELETE",
-        url: `cart/${cartItemId}`,
-      };
-      await instance(config);
-      return cartItemId; 
+      const docRef = doc(db, "cart", cartItemId);
+      await deleteDoc(docRef);
+      return cartItemId;
     } catch (error) {
-      console.error("Ошибка при удалении из корзины:", error);
-      return thunkAPI.rejectWithValue(error.response?.data || "Delete error");
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
