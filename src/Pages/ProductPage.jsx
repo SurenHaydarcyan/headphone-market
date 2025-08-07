@@ -120,9 +120,9 @@ const ProductPage = () => {
   const cartItem = localCart.find((item) => item.productId === product.id);
 
   return (
-    <div className="flex flex-col items-center bg-gray-200 p-20 min-h-screen">
-      <div className="container w-full max-w-7xl flex flex-wrap justify-between mb-6 gap-4 px-4">
-        <nav className="flex gap-1 flex-wrap items-center text-sm text-gray-700">
+    <div className="flex flex-col items-center bg-gray-200 p-4 sm:p-6 md:p-20 min-h-screen">
+      <div className="container w-full max-w-7xl flex flex-wrap justify-between mb-6 gap-4 px-2 sm:px-4 text-sm">
+        <nav className="flex flex-wrap items-center gap-1 text-gray-700">
           <button
             onClick={() => navigate("/")}
             className="hover:underline cursor-pointer"
@@ -138,7 +138,7 @@ const ProductPage = () => {
           <span className="text-gray-500">Ваш товар</span>
         </nav>
 
-        <div className="flex gap-4 items-center text-sm">
+        <div className="flex flex-wrap gap-2 items-center justify-center sm:justify-end">
           <button
             onClick={() => nextOrPreview("preview")}
             className="hover:underline cursor-pointer"
@@ -157,9 +157,9 @@ const ProductPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row w-full max-w-7xl gap-10 px-4">
-        <div className="md:w-3/5 flex flex-col gap-6">
-          <div className="border border-gray-400 p-2 inline-block max-w-[400px] max-h-[400px]">
+      <div className="flex flex-col md:flex-row w-full max-w-7xl gap-10 px-2 sm:px-4">
+        <div className="md:w-3/5 flex flex-col gap-6 items-center md:items-start">
+          <div className="border border-gray-400 p-2 inline-block w-full max-w-full sm:max-w-[400px] sm:max-h-[400px]">
             <img
               src={product.img}
               alt={product.productName}
@@ -167,21 +167,22 @@ const ProductPage = () => {
             />
           </div>
 
-          <p className="text-gray-700 text-base leading-relaxed">
+          <p className="text-gray-700 text-sm sm:text-base leading-relaxed text-center md:text-left">
             Это описание товара. Здесь вы можете рассказать о товаре подробнее:
             напишите о размерах, материалах, уходе и любых других важных
             моментах.
           </p>
         </div>
-        <div className="md:w-2/5 flex flex-col gap-6">
+
+        <div className="md:w-2/5 flex flex-col gap-6 px-2 sm:px-0">
           <div>
-            <p className="text-2xl font-semibold uppercase mb-1">
+            <p className="text-xl sm:text-2xl font-semibold uppercase mb-1">
               {product.productName}
             </p>
             <p className="text-xs text-gray-500 mb-4">
               Артикул 000{product.id}
             </p>
-            <p className="text-xl text-gray-700 font-semibold mb-4">
+            <p className="text-lg sm:text-xl text-gray-700 font-semibold mb-4">
               PRICE: {product.price}$
             </p>
           </div>
@@ -240,11 +241,11 @@ const ProductPage = () => {
             </AccordionItem>
           </Accordion>
 
-          <div className="flex gap-4 mt-4">
-            <Facebook className="w-10 h-8 text-black cursor-pointer hover:text-blue-600 transition duration-300" />
-            <Twitter className="w-10 h-8 text-black cursor-pointer hover:text-blue-600 transition duration-300" />
-            <Instagram className="w-10 h-8 text-black cursor-pointer hover:text-rose-600 transition duration-300" />
-            <FaWhatsapp className="w-10 h-8 text-black cursor-pointer hover:text-green-600 transition duration-300" />
+          <div className="flex gap-4 mt-4 justify-center md:justify-start">
+            <Facebook className="w-8 h-8 sm:w-10 sm:h-8 text-black cursor-pointer hover:text-blue-600 transition duration-300" />
+            <Twitter className="w-8 h-8 sm:w-10 sm:h-8 text-black cursor-pointer hover:text-blue-600 transition duration-300" />
+            <Instagram className="w-8 h-8 sm:w-10 sm:h-8 text-black cursor-pointer hover:text-rose-600 transition duration-300" />
+            <FaWhatsapp className="w-8 h-8 sm:w-10 sm:h-8 text-black cursor-pointer hover:text-green-600 transition duration-300" />
           </div>
         </div>
       </div>

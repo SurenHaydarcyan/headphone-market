@@ -81,7 +81,7 @@ const CartSlide = memo(() => {
       <SheetContent className="w-full z-[999] max-w-full sm:w-[500px] md:w-[700px] lg:w-[900px] overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-center text-black font-bold italic underline text-2xl">
-            PRODUCTS
+            Ваша корзина
           </SheetTitle>
           <SheetClose className="text-black bg-black" />
         </SheetHeader>
@@ -130,13 +130,13 @@ const CartSlide = memo(() => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500 text-sm">Cart is empty</p>
+              <p className="text-center text-gray-500 text-sm">Корзина пуста</p>
             )}
           </div>
 
           <div className="border-t border-gray-300 pt-4 flex flex-col gap-4">
             <div className="flex justify-between text-xl font-semibold px-2">
-              <span>Total:</span>
+              <span>Сумма:</span>
               <span>{totalPrice}$</span>
             </div>
 
