@@ -1,10 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import img from "../../../assets/ContainerHome4/iconImg.png";
 
 const ContainerFour = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/market");
+  };
   return (
     <div className="w-full bg-gray-200">
       <div className="p-10 container gap-10 flex flex-col items-center justify-center">
-        <h1 className="text-black text-[60px] md:text-[90px] text-center">СВЯЗЬ</h1>
+        <h1 className="text-black text-[60px] md:text-[90px] text-center">
+          СВЯЗЬ
+        </h1>
 
         <div className="flex justify-center flex-col w-[150px] h-[5px] bg-black"></div>
 
@@ -62,11 +70,16 @@ const ContainerFour = () => {
           </div>
 
           <div className="w-[90%] md:w-[50%] text-center">
-            <a href="#" className="text-gray-500 hover:text-black">{'Узнать о нас больше >'}</a>
+            <a href="#" className="text-gray-500 hover:text-black">
+              {"Узнать о нас больше >"}
+            </a>
           </div>
 
-          <button className="text-white bg-black w-[150px] h-[40px] hover:bg-gray-400 duration-300">
-            {'В Магазин >'}
+          <button
+            onClick={() => handleNavigate()}
+            className="text-white bg-black w-[150px] h-[40px] hover:bg-gray-400 duration-300"
+          >
+            {"В Магазин >"}
           </button>
         </div>
       </div>

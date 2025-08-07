@@ -1,14 +1,9 @@
-
 import Slider from "./Slider";
 
-
-
-
 const ContanerFirst = () => {
-
   return (
     <div className=" bg-black w-full flex justify-around">
-     <Slider/>
+      <Slider />
     </div>
   );
 };

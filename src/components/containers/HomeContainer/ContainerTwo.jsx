@@ -29,10 +29,11 @@ const ContainerTwo = () => {
   return (
     <div className="w-full bg-white">
       <div className="container p-10 flex justify-center items-center gap-10 flex-col-reverse md:flex-row">
-        
         {/* Text Section */}
         <div className="flex flex-col items-center text-center gap-6 w-full md:w-1/2 text-[18px] md:text-[20px]">
-          <h1 className="font-semibold">Это заголовок. Кликните, чтобы отредактировать</h1>
+          <h1 className="font-semibold">
+            Это заголовок. Кликните, чтобы отредактировать
+          </h1>
           <p className="max-w-[90%] text-gray-700">
             Это текст. Нажмите один раз и выберите «Редактировать текст» или
             просто кликните дважды, чтобы добавить свой текст и настроить шрифт.
